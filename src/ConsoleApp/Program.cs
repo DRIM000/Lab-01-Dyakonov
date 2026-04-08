@@ -1,23 +1,20 @@
 using System;
+using ConsoleApp.Modules;
 
 class Program
 {
     static void Main()
     {
-        Console.Write("Введите строку: ");
-        string input = Console.ReadLine();
-        
-        string vowels = "аеёиоуыэюя";
-        int count = 0;
-        
-        foreach (char c in input.ToLower())
+        Console.WriteLine("=== Подсчёт гласных букв (модульная версия) ===\n");
+
+        string input = InputModule.ReadString("Введите строку: ");
+
+        if (!ValidationModule.IsValidString(input))
         {
-            if (vowels.Contains(c))
-            {
-                count++;
-            }
+            Console.WriteLine("Ошибка: строка не может быть пустой!");
+            return;
         }
-        
-        Console.WriteLine($"Количество гласных: {count}");
+
+        ProcessingModule.CountAndPrintVowels(input);
     }
 }
